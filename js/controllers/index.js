@@ -21,10 +21,10 @@ window.renderTask = (arrTaskToDo) => {
         <li>
             ${task.newTask}
             <div class="buttons">
-            <button >
-                <i class="fa-solid fa-trash-can complete"></i>
+            <button onclick="xoaTaskToDo('${task.newTask}')">
+                <i class="fa-solid fa-trash-can"></i>
             </button>
-            <button>
+            <button onclick="endTask('${task.newTask}')">
                 <i class="fa-regular fa-circle-check"></i>
             </button>
 
@@ -33,5 +33,64 @@ window.renderTask = (arrTaskToDo) => {
         `
     }
     document.querySelector('#todo').innerHTML = html;
+}
+
+window.renderTaskComplete = (arrTaskComplete) => {
+    let html = '';
+    for (let task of arrTaskComplete) {
+        html += `
+        <li>
+            ${task.newTask}
+            <div class="buttons">
+            <button onclick="xoaTaskComplete('${task.newTask}')">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+            <button onclick="reTask('${task.newTask}')">
+                <i class="fa-solid fa-circle-check"></i>
+            </button>
+
+            </div>
+        </li>
+        `
+    }
+    document.querySelector('#completed').innerHTML = html;
+}
+
+window.xoaTaskComplete = (taskClick) => {
+    toDoList.xoaTaskComplete(taskClick);
+    renderTaskComplete(toDoList.arrTaskComplete);
+
+}
+
+window.xoaTaskToDo = (taskClick) => {
+    toDoList.xoaTaskToDo(taskClick);
+    renderTask(toDoList.arrTaskToDo);
+
+}
+
+window.endTask = (taskClick) => {
+    toDoList.endTask(taskClick);
+    renderTask(toDoList.arrTaskToDo);
+    renderTaskComplete(toDoList.arrTaskComplete);
+
+}
+
+window.reTask = (taskClick) => {
+    toDoList.reTask(taskClick);
+    renderTask(toDoList.arrTaskToDo);
+    renderTaskComplete(toDoList.arrTaskComplete);
+
+}
+
+window.sortDown = () => {
+    toDoList.sortDown();
+    renderTask(toDoList.arrTaskToDo);
+    renderTaskComplete(toDoList.arrTaskComplete);
+}
+
+window.sortUp = () => {
+    toDoList.sortUp();
+    renderTask(toDoList.arrTaskToDo);
+    renderTaskComplete(toDoList.arrTaskComplete);
 }
 
