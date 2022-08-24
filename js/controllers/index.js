@@ -2,6 +2,8 @@ import { Task } from "../Models/task.js";
 import { ToDoList } from "../Models/toDoList.js";
 let toDoList = new ToDoList();
 
+
+
 document.querySelector('#addItem').onclick = () => {
     let task = new Task();
     let input = document.querySelector('#newTask');
